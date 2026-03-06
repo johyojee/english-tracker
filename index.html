@@ -3,554 +3,990 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1만시간의 법칙 — 영어 마스터 플랜</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>1만시간 영어 트래커</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0f;
-    --surface: #12121a;
-    --card: #1a1a26;
-    --border: #2a2a3e;
-    --accent: #f0c040;
-    --accent2: #4af0b0;
-    --accent3: #f06040;
-    --text: #e8e8f0;
-    --muted: #7070a0;
+    --bg: #060608;
+    --surface: #0e0e14;
+    --card: #13131c;
+    --border: #1e1e2e;
+    --border2: #2a2a40;
+    --gold: #f5c842;
+    --gold2: #e8a820;
+    --teal: #38d9a0;
+    --blue: #4da6ff;
+    --red: #ff5f5f;
+    --text: #eeeef8;
+    --muted: #6060a0;
+    --muted2: #9090b8;
+    --checked: rgba(56,217,160,0.12);
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin:0; padding:0; box-sizing:border-box; }
 
   body {
     background: var(--bg);
     color: var(--text);
     font-family: 'Noto Sans KR', sans-serif;
     min-height: 100vh;
-    padding: 40px 20px 80px;
-    overflow-x: hidden;
+    padding: 0 0 100px;
   }
 
-  /* Animated background */
-  body::before {
-    content: '';
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(ellipse at 20% 20%, rgba(240,192,64,0.04) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(74,240,176,0.04) 0%, transparent 50%);
-    animation: bgShift 12s ease-in-out infinite alternate;
-    pointer-events: none;
-    z-index: 0;
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(160deg, #0d0d18 0%, #060608 60%);
+    border-bottom: 1px solid var(--border);
+    padding: 36px 24px 28px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
   }
 
-  @keyframes bgShift {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    100% { transform: translate(2%, 2%) rotate(3deg); }
-  }
-
-  .container {
-    max-width: 960px;
+  .hero-inner {
+    max-width: 860px;
     margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Header */
-  .header {
-    text-align: center;
-    margin-bottom: 60px;
-    animation: fadeDown 0.8s ease both;
-  }
-
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .tag {
-    display: inline-block;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 4px 16px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-  }
-
-  .title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(52px, 10vw, 96px);
-    letter-spacing: 4px;
-    line-height: 0.9;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-
-  .title span {
-    color: var(--accent);
-    display: block;
-  }
-
-  .subtitle {
-    font-size: 14px;
-    color: var(--muted);
-    letter-spacing: 1px;
-    margin-top: 16px;
-    font-weight: 300;
-  }
-
-  /* Rule card */
-  .rule-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--accent);
-    padding: 24px 32px;
-    margin-bottom: 48px;
     display: flex;
     align-items: center;
-    gap: 24px;
-    animation: fadeUp 0.8s 0.2s ease both;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
   }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .rule-number {
+  .hero-left h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px;
-    color: var(--accent);
+    font-size: 42px;
+    letter-spacing: 3px;
     line-height: 1;
-    flex-shrink: 0;
+    color: var(--gold);
   }
 
-  .rule-text h3 {
-    font-size: 16px;
-    font-weight: 700;
+  .hero-left p {
+    font-size: 12px;
+    color: var(--muted2);
+    letter-spacing: 1px;
+    margin-top: 4px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .stat-box {
+    text-align: center;
+    min-width: 80px;
+  }
+
+  .stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    line-height: 1;
+  }
+
+  .stat-val.gold { color: var(--gold); }
+  .stat-val.teal { color: var(--teal); }
+  .stat-val.blue { color: var(--blue); }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* ─── MASTER PROGRESS BAR ─── */
+  .master-bar-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+    margin-top: -1px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding-top: 12px;
+    padding-bottom: 14px;
+  }
+
+  .bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
     margin-bottom: 6px;
   }
 
-  .rule-text p {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-    font-weight: 300;
+  .bar-labels span { color: var(--muted2); }
+
+  .master-bar {
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
   }
 
-  /* Section label */
-  .section-label {
+  .master-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    border-radius: 4px;
+    transition: width 0.6s cubic-bezier(.4,0,.2,1);
+    min-width: 0;
+  }
+
+  /* milestones */
+  .milestone-dots {
+    position: relative;
+    height: 16px;
+    margin-top: 4px;
+  }
+
+  .mdot {
+    position: absolute;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .mdot-line {
+    width: 1px;
+    height: 6px;
+    background: var(--border2);
+    margin: 0 auto;
+  }
+
+  .mdot-label {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
+    font-size: 8px;
     color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-
-  /* Table wrapper */
-  .table-wrap {
-    overflow-x: auto;
-    margin-bottom: 48px;
-    animation: fadeUp 0.8s 0.4s ease both;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-
-  thead tr {
-    background: var(--accent);
-  }
-
-  thead th {
-    color: #0a0a0f;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 14px 18px;
-    text-align: left;
     white-space: nowrap;
   }
 
-  tbody tr {
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s;
+  .mdot.reached .mdot-line { background: var(--teal); }
+  .mdot.reached .mdot-label { color: var(--teal); }
+
+  /* ─── CONTENT ─── */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 24px;
   }
 
-  tbody tr:hover {
-    background: rgba(240,192,64,0.05);
+  /* ─── CONTROLS ─── */
+  .controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
   }
 
-  tbody td {
-    padding: 14px 18px;
+  .ctrl-btn {
+    background: var(--card);
+    border: 1px solid var(--border2);
     color: var(--text);
-    white-space: nowrap;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
   }
 
-  tbody td:first-child {
-    font-weight: 700;
-    color: var(--accent2);
+  .ctrl-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .ctrl-btn.active { background: var(--gold); color: #000; border-color: var(--gold); }
+
+  .search-input {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 8px 16px;
+    outline: none;
+    width: 160px;
+    transition: border-color 0.2s;
   }
 
-  /* Hours per day highlight */
-  .h1 { color: #5ab0ff; }
-  .h2 { color: #5ad4ff; }
-  .h3 { color: var(--accent2); }
-  .h4 { color: var(--accent); }
-  .h5 { color: #ffaa40; }
-  .h6 { color: var(--accent3); }
-  .h8 { color: #ff6060; }
+  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--muted); }
 
-  /* Badge */
-  .badge {
-    display: inline-block;
+  .ctrl-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 2px;
-    letter-spacing: 1px;
-  }
-
-  .badge-easy { background: rgba(74,240,176,0.15); color: var(--accent2); border: 1px solid rgba(74,240,176,0.3); }
-  .badge-med { background: rgba(240,192,64,0.15); color: var(--accent); border: 1px solid rgba(240,192,64,0.3); }
-  .badge-hard { background: rgba(240,96,64,0.15); color: var(--accent3); border: 1px solid rgba(240,96,64,0.3); }
-  .badge-rec { background: rgba(74,240,176,0.2); color: var(--accent2); border: 1px solid var(--accent2); font-weight: 700; }
-
-  /* Visual bar */
-  .bar-wrap {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .bar {
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    width: 80px;
-    overflow: hidden;
-  }
-
-  .bar-fill {
-    height: 100%;
-    border-radius: 2px;
-    background: var(--accent);
-    transition: width 1s ease;
-  }
-
-  /* Progress section */
-  .levels {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-    margin-bottom: 48px;
-    animation: fadeUp 0.8s 0.5s ease both;
-  }
-
-  .level-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 20px 24px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .level-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-  }
-
-  .level-card.l1::after { background: #5ab0ff; }
-  .level-card.l2::after { background: var(--accent2); }
-  .level-card.l3::after { background: var(--accent); }
-  .level-card.l4::after { background: var(--accent3); }
-
-  .level-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
     color: var(--muted);
     letter-spacing: 2px;
-    margin-bottom: 8px;
+    text-transform: uppercase;
+    margin-left: auto;
   }
 
-  .level-name {
-    font-size: 17px;
+  /* ─── PHASE SECTIONS ─── */
+  .phase {
+    margin-bottom: 32px;
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .phase-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    border: 1px solid;
+  }
+
+  .phase-1 .phase-badge { color: #5ab0ff; border-color: #5ab0ff; }
+  .phase-2 .phase-badge { color: var(--teal); border-color: var(--teal); }
+  .phase-3 .phase-badge { color: var(--gold); border-color: var(--gold); }
+  .phase-4 .phase-badge { color: var(--red); border-color: var(--red); }
+
+  .phase-title {
+    font-size: 15px;
     font-weight: 700;
+    flex: 1;
+  }
+
+  .phase-progress-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted2);
+  }
+
+  .phase-mini-bar {
+    flex-shrink: 0;
+    width: 80px;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .phase-mini-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  .phase-1 .phase-mini-fill { background: #5ab0ff; }
+  .phase-2 .phase-mini-fill { background: var(--teal); }
+  .phase-3 .phase-mini-fill { background: var(--gold); }
+  .phase-4 .phase-mini-fill { background: var(--red); }
+
+  .phase-toggle { color: var(--muted); font-size: 12px; transition: transform 0.3s; }
+  .phase.collapsed .phase-toggle { transform: rotate(-90deg); }
+
+  /* ─── WEEK GROUPS ─── */
+  .week-group {
     margin-bottom: 4px;
   }
 
-  .level-hours {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    line-height: 1;
-    margin: 8px 0 4px;
-  }
-
-  .level-card.l1 .level-hours { color: #5ab0ff; }
-  .level-card.l2 .level-hours { color: var(--accent2); }
-  .level-card.l3 .level-hours { color: var(--accent); }
-  .level-card.l4 .level-hours { color: var(--accent3); }
-
-  .level-desc {
-    font-size: 12px;
+  .week-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
     color: var(--muted);
-    line-height: 1.6;
-    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    padding-left: 2px;
   }
 
-  /* Tips */
-  .tips {
+  /* ─── DAY GRID ─── */
+  .day-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+  }
+
+  @media (max-width: 600px) {
+    .day-grid { grid-template-columns: repeat(5, 1fr); }
+  }
+
+  /* ─── DAY CELL ─── */
+  .day-cell {
     background: var(--card);
     border: 1px solid var(--border);
-    padding: 28px 32px;
-    animation: fadeUp 0.8s 0.6s ease both;
+    padding: 8px 6px 7px;
+    cursor: pointer;
+    transition: all 0.18s;
+    position: relative;
+    min-height: 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    text-align: center;
   }
 
-  .tips h3 {
+  .day-cell:hover {
+    border-color: var(--gold);
+    background: rgba(245,200,66,0.06);
+    transform: translateY(-1px);
+  }
+
+  .day-cell.checked {
+    background: var(--checked);
+    border-color: var(--teal);
+  }
+
+  .day-cell.checked .day-num { color: var(--teal); }
+
+  .day-cell.today {
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+
+  .day-cell.future {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .day-cell.future:hover {
+    transform: none;
+    border-color: var(--border);
+    background: var(--card);
+  }
+
+  .day-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted2);
+    line-height: 1;
+  }
+
+  .day-total {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+  }
+
+  .day-cell.checked .day-total { color: var(--teal); opacity: 0.8; }
+
+  .check-icon {
+    font-size: 14px;
+    line-height: 1;
+    display: none;
+  }
+
+  .day-cell.checked .check-icon { display: block; }
+  .day-cell.checked .day-num { display: none; }
+
+  .day-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── PHASE COLLAPSED ─── */
+  .phase.collapsed .day-grid,
+  .phase.collapsed .week-group,
+  .phase.collapsed .week-label { display: none; }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    padding: 32px;
+    width: 360px;
+    max-width: 95vw;
+    animation: popIn 0.25s ease;
+  }
+
+  @keyframes popIn {
+    from { opacity:0; transform: scale(0.92) translateY(10px); }
+    to { opacity:1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-day {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .modal-subtitle {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--accent);
-    text-transform: uppercase;
+    color: var(--muted2);
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+
+  .modal-section {
     margin-bottom: 20px;
   }
 
-  .tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-  }
-
-  .tip-item {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-
-  .tip-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    margin-top: 7px;
-    flex-shrink: 0;
-  }
-
-  .tip-text {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
-    font-weight: 300;
-  }
-
-  .tip-text strong {
-    color: var(--text);
-    font-weight: 700;
-  }
-
-  .footer {
-    text-align: center;
-    margin-top: 60px;
+  .modal-label {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
+    font-size: 10px;
     letter-spacing: 2px;
-    animation: fadeUp 0.8s 0.7s ease both;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
   }
 
-  .highlight-row td {
-    background: rgba(74,240,176,0.04) !important;
+  .hours-picker {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
   }
 
-  .highlight-row td:first-child::before {
-    content: '★ ';
-    color: var(--accent2);
+  .hour-btn {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    color: var(--muted2);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.15s;
   }
+
+  .hour-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .hour-btn.selected { background: var(--gold); color: #000; border-color: var(--gold); }
+
+  .note-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    padding: 10px 12px;
+    outline: none;
+    resize: none;
+    height: 64px;
+    transition: border-color 0.2s;
+  }
+
+  .note-input:focus { border-color: var(--gold); }
+
+  .modal-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .btn-confirm {
+    flex: 1;
+    background: var(--teal);
+    border: none;
+    color: #000;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    padding: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .btn-confirm:hover { opacity: 0.85; }
+
+  .btn-uncheck {
+    background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--muted2);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-uncheck:hover { border-color: var(--red); color: var(--red); }
+
+  .btn-cancel {
+    background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--muted2);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-cancel:hover { border-color: var(--muted2); color: var(--text); }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--teal);
+    color: #000;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 12px 28px;
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ─── EMPTY STATE ─── */
+  .empty-msg {
+    text-align: center;
+    padding: 60px 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); }
 </style>
 </head>
 <body>
-<div class="container">
 
-  <div class="header">
-    <div class="tag">Malcolm Gladwell · Outliers</div>
-    <div class="title">1만시간<span>의 법칙</span></div>
-    <div class="subtitle">왕초보 → 전문가 수준 영어 마스터 플랜 | 10,000 Hours Rule</div>
-  </div>
-
-  <div class="rule-card">
-    <div class="rule-number">10K</div>
-    <div class="rule-text">
-      <h3>말콤 글래드웰의 1만시간 법칙이란?</h3>
-      <p>어떤 분야에서든 세계적 수준의 전문가가 되려면 <strong style="color:var(--accent)">최소 1만 시간</strong>의 의도적 연습(deliberate practice)이 필요하다는 이론입니다. 영어의 경우 단순 노출이 아닌, 말하기·듣기·읽기·쓰기를 고르게 훈련하는 집중적 학습을 의미합니다.</p>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h1>10,000H TRACKER</h1>
+      <p>하루 2시간 · 매일 꾸준히 · 영어 마스터 플랜</p>
     </div>
-  </div>
-
-  <!-- 단계별 누적 시간 -->
-  <div class="section-label">단계별 목표 누적 시간</div>
-  <div class="levels">
-    <div class="level-card l1">
-      <div class="level-num">LEVEL 01</div>
-      <div class="level-name">기초 생존 회화</div>
-      <div class="level-hours">500H</div>
-      <div class="level-desc">인사, 자기소개, 간단한 일상 표현 가능 · A1~A2 수준</div>
-    </div>
-    <div class="level-card l2">
-      <div class="level-num">LEVEL 02</div>
-      <div class="level-name">일상 대화 가능</div>
-      <div class="level-hours">2,000H</div>
-      <div class="level-desc">자유로운 일상 주제 소통 가능 · B1~B2 수준 (토익 700+)</div>
-    </div>
-    <div class="level-card l3">
-      <div class="level-num">LEVEL 03</div>
-      <div class="level-name">비즈니스 유창함</div>
-      <div class="level-hours">5,000H</div>
-      <div class="level-desc">업무·발표·협상 가능, 뉘앙스 파악 · C1 수준 (토익 900+)</div>
-    </div>
-    <div class="level-card l4">
-      <div class="level-num">LEVEL 04</div>
-      <div class="level-name">원어민급 전문가</div>
-      <div class="level-hours">10,000H</div>
-      <div class="level-desc">학술·전문 분야 완전 구사, 원어민과 동등한 수준 · C2</div>
-    </div>
-  </div>
-
-  <!-- 메인 표 -->
-  <div class="section-label">하루 학습 시간별 목표 달성 기간</div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>하루 학습</th>
-          <th>주당 시간</th>
-          <th>기초 생존회화<br><span style="font-size:9px;opacity:0.7">500H</span></th>
-          <th>일상대화 가능<br><span style="font-size:9px;opacity:0.7">2,000H</span></th>
-          <th>비즈니스 유창<br><span style="font-size:9px;opacity:0.7">5,000H</span></th>
-          <th>원어민급 전문가<br><span style="font-size:9px;opacity:0.7">10,000H</span></th>
-          <th>난이도</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="h1">1시간</td>
-          <td>7시간</td>
-          <td>약 1년 4개월</td>
-          <td>약 5년 5개월</td>
-          <td>약 13년 8개월</td>
-          <td>약 27년 4개월</td>
-          <td><span class="badge badge-easy">여유</span></td>
-        </tr>
-        <tr>
-          <td class="h2">1.5시간</td>
-          <td>10.5시간</td>
-          <td>약 10개월</td>
-          <td>약 3년 7개월</td>
-          <td>약 9년 1개월</td>
-          <td>약 18년 2개월</td>
-          <td><span class="badge badge-easy">여유</span></td>
-        </tr>
-        <tr class="highlight-row">
-          <td class="h3">2시간</td>
-          <td>14시간</td>
-          <td>약 8개월</td>
-          <td>약 2년 9개월</td>
-          <td>약 6년 10개월</td>
-          <td>약 13년 8개월</td>
-          <td><span class="badge badge-rec">★추천</span></td>
-        </tr>
-        <tr>
-          <td class="h3">3시간</td>
-          <td>21시간</td>
-          <td>약 5개월</td>
-          <td>약 1년 10개월</td>
-          <td>약 4년 7개월</td>
-          <td>약 9년 1개월</td>
-          <td><span class="badge badge-med">보통</span></td>
-        </tr>
-        <tr>
-          <td class="h4">4시간</td>
-          <td>28시간</td>
-          <td>약 4개월</td>
-          <td>약 1년 4개월</td>
-          <td>약 3년 5개월</td>
-          <td>약 6년 10개월</td>
-          <td><span class="badge badge-med">보통</span></td>
-        </tr>
-        <tr>
-          <td class="h5">5시간</td>
-          <td>35시간</td>
-          <td>약 3개월</td>
-          <td>약 1년 1개월</td>
-          <td>약 2년 9개월</td>
-          <td>약 5년 6개월</td>
-          <td><span class="badge badge-hard">강도높음</span></td>
-        </tr>
-        <tr>
-          <td class="h6">6시간</td>
-          <td>42시간</td>
-          <td>약 2.5개월</td>
-          <td>약 11개월</td>
-          <td>약 2년 4개월</td>
-          <td>약 4년 7개월</td>
-          <td><span class="badge badge-hard">강도높음</span></td>
-        </tr>
-        <tr>
-          <td class="h8">8시간</td>
-          <td>56시간</td>
-          <td>약 2개월</td>
-          <td>약 8개월</td>
-          <td>약 1년 9개월</td>
-          <td>약 3년 5개월</td>
-          <td><span class="badge badge-hard">⚡ 집중</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="tips">
-    <h3>효과적인 1만시간 채우기 — 핵심 전략</h3>
-    <div class="tips-grid">
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <div class="tip-text"><strong>의도적 연습</strong>만 카운트<br>단순 드라마 시청은 절반 효율, 쉐도잉·받아쓰기는 2배 효율</div>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-val gold" id="stat-hours">0</div>
+        <div class="stat-label">누적시간</div>
       </div>
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <div class="tip-text"><strong>4대 영역 균형</strong><br>말하기 30% · 듣기 30% · 읽기 20% · 쓰기 20% 비율 권장</div>
+      <div class="stat-box">
+        <div class="stat-val teal" id="stat-days">0</div>
+        <div class="stat-label">완료일수</div>
       </div>
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <div class="tip-text"><strong>꾸준함 > 강도</strong><br>하루 8시간 1달보다 하루 2시간 4년이 훨씬 효과적</div>
+      <div class="stat-box">
+        <div class="stat-val blue" id="stat-streak">0</div>
+        <div class="stat-label">연속일수</div>
       </div>
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <div class="tip-text"><strong>몰입 환경 조성</strong><br>핸드폰 언어 설정, 영어 일기, 원어민 튜터 활용으로 효율 극대화</div>
-      </div>
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <div class="tip-text"><strong>주 1회 점검</strong><br>학습 시간 기록 앱(Toggl 등) 활용, 목표 대비 달성률 체크</div>
-      </div>
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <div class="tip-text"><strong>현실적 기대치</strong><br>1만시간은 이론상 최소치, 개인차·학습 환경에 따라 변동 있음</div>
+      <div class="stat-box">
+        <div class="stat-val" id="stat-pct" style="color:var(--muted2)">0%</div>
+        <div class="stat-label">달성률</div>
       </div>
     </div>
   </div>
-
-  <div class="footer">
-    ※ 1년 = 365일 기준 계산 · 매일 빠짐없이 학습 시 도달 기간<br>
-    실제 학습 공백 및 효율 차이를 감안하면 20~30% 여유 기간 추가 권장
-  </div>
-
 </div>
+
+<!-- MASTER BAR -->
+<div class="master-bar-wrap">
+  <div class="bar-labels">
+    <span>0H</span>
+    <span id="bar-current-label" style="color:var(--gold)">0 / 10,000H</span>
+    <span>10,000H</span>
+  </div>
+  <div class="master-bar">
+    <div class="master-fill" id="master-fill" style="width:0%"></div>
+  </div>
+  <div class="milestone-dots" id="milestone-dots"></div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+  <!-- CONTROLS -->
+  <div class="controls">
+    <button class="ctrl-btn active" onclick="filterPhase('all', this)">전체</button>
+    <button class="ctrl-btn" onclick="filterPhase(1, this)">기초</button>
+    <button class="ctrl-btn" onclick="filterPhase(2, this)">일상</button>
+    <button class="ctrl-btn" onclick="filterPhase(3, this)">비즈니스</button>
+    <button class="ctrl-btn" onclick="filterPhase(4, this)">전문가</button>
+    <span class="ctrl-label" id="remain-label">남은 시간: 10,000H</span>
+  </div>
+
+  <!-- PHASES -->
+  <div id="phases-container"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-day" id="modal-day-num">DAY 1</div>
+    <div class="modal-subtitle" id="modal-date-str">—</div>
+
+    <div class="modal-section">
+      <div class="modal-label">오늘 학습한 시간</div>
+      <div class="hours-picker" id="hours-picker">
+        <button class="hour-btn" onclick="selectHours(0.5, this)">0.5h</button>
+        <button class="hour-btn selected" onclick="selectHours(1, this)">1h</button>
+        <button class="hour-btn" onclick="selectHours(1.5, this)">1.5h</button>
+        <button class="hour-btn" onclick="selectHours(2, this)">2h ★</button>
+        <button class="hour-btn" onclick="selectHours(2.5, this)">2.5h</button>
+        <button class="hour-btn" onclick="selectHours(3, this)">3h</button>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-label">메모 (선택)</div>
+      <textarea class="note-input" id="modal-note" placeholder="오늘 공부한 내용을 적어보세요..."></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-confirm" onclick="confirmCheck()">✓ 완료 체크</button>
+      <button class="btn-uncheck" id="btn-uncheck" onclick="doUncheck()" style="display:none">취소</button>
+      <button class="btn-cancel" onclick="closeModal()">닫기</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── CONFIG ───
+const TOTAL_HOURS = 10000;
+const DAILY_HOURS = 2;
+const TOTAL_DAYS = Math.ceil(TOTAL_HOURS / DAILY_HOURS); // 5000 days
+
+const PHASES = [
+  { id: 1, name: '기초 생존 회화', color: '#5ab0ff', targetH: 500,  days: 250, desc: 'A1~A2 · 인사·자기소개·일상 표현' },
+  { id: 2, name: '일상 대화 가능', color: '#38d9a0', targetH: 2000, days: 750, desc: 'B1~B2 · 자유로운 일상 소통 (토익700+)' },
+  { id: 3, name: '비즈니스 유창', color: '#f5c842', targetH: 5000, days: 1500, desc: 'C1 · 업무·발표·협상 (토익900+)' },
+  { id: 4, name: '원어민급 전문가', color: '#ff5f5f', targetH: 10000, days: 2500, desc: 'C2 · 완전 구사, 원어민 동등 수준' },
+];
+
+const MILESTONES = [
+  { h: 500,  label: '500H 기초' },
+  { h: 2000, label: '2000H 일상' },
+  { h: 5000, label: '5000H 비즈' },
+  { h: 10000, label: '10000H 완성' },
+];
+
+// ─── STATE ───
+const DATA_KEY = 'eng10k_data_v2';
+let data = {};   // { dayIndex: { hours: 2, note: '...', date: '...' } }
+let openDay = null;
+let selectedHours = 2;
+let currentFilter = 'all';
+
+// ─── STORAGE ───
+function save() {
+  try { localStorage.setItem(DATA_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function load() {
+  try {
+    const raw = localStorage.getItem(DATA_KEY);
+    if (raw) data = JSON.parse(raw);
+  } catch(e) { data = {}; }
+}
+
+// ─── DATE HELPERS ───
+const startDate = new Date(2026, 2, 6); // 2026-03-06
+
+function dayIndexToDate(idx) {
+  const d = new Date(startDate);
+  d.setDate(d.getDate() + idx);
+  return d;
+}
+
+function formatDate(d) {
+  return `${d.getMonth()+1}/${d.getDate()}`;
+}
+
+function formatDateFull(d) {
+  const days = ['일','월','화','수','목','금','토'];
+  return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} (${days[d.getDay()]})`;
+}
+
+function todayIndex() {
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const start = new Date(startDate);
+  start.setHours(0,0,0,0);
+  return Math.floor((today - start) / 86400000);
+}
+
+// ─── COMPUTE STATS ───
+function computeStats() {
+  const checkedDays = Object.keys(data).map(Number);
+  const totalHours = checkedDays.reduce((s, d) => s + (data[d].hours || 2), 0);
+  const totalDays = checkedDays.length;
+  const pct = Math.min(100, (totalHours / TOTAL_HOURS * 100));
+
+  // streak
+  const ti = todayIndex();
+  let streak = 0;
+  for (let i = ti; i >= 0; i--) {
+    if (data[i]) streak++;
+    else break;
+  }
+
+  return { totalHours, totalDays, pct, streak };
+}
+
+// ─── RENDER STATS ───
+function renderStats() {
+  const { totalHours, totalDays, pct, streak } = computeStats();
+  document.getElementById('stat-hours').textContent = totalHours.toLocaleString();
+  document.getElementById('stat-days').textContent = totalDays.toLocaleString();
+  document.getElementById('stat-streak').textContent = streak;
+  document.getElementById('stat-pct').textContent = pct.toFixed(1) + '%';
+  document.getElementById('bar-current-label').textContent = `${totalHours.toLocaleString()} / 10,000H`;
+  document.getElementById('master-fill').style.width = pct + '%';
+  document.getElementById('remain-label').textContent = `남은 시간: ${Math.max(0, TOTAL_HOURS - totalHours).toLocaleString()}H`;
+
+  // milestones
+  const dots = document.getElementById('milestone-dots');
+  dots.innerHTML = MILESTONES.map(m => {
+    const pctM = (m.h / TOTAL_HOURS * 100);
+    const reached = totalHours >= m.h;
+    return `<div class="mdot${reached?' reached':''}" style="left:${pctM}%">
+      <div class="mdot-line"></div>
+      <div class="mdot-label">${m.label}</div>
+    </div>`;
+  }).join('');
+}
+
+// ─── BUILD PHASES ───
+function buildPhases() {
+  const container = document.getElementById('phases-container');
+  container.innerHTML = '';
+
+  let dayOffset = 0;
+
+  PHASES.forEach(phase => {
+    if (currentFilter !== 'all' && currentFilter !== phase.id) {
+      dayOffset += phase.days;
+      return;
+    }
+
+    const phaseEl = document.createElement('div');
+    phaseEl.className = `phase phase-${phase.id}`;
+    phaseEl.dataset.phase = phase.id;
+
+    // count checked in phase
+    let phaseChecked = 0, phaseHours = 0;
+    for (let i = 0; i < phase.days; i++) {
+      const di = dayOffset + i;
+      if (data[di]) { phaseChecked++; phaseHours += data[di].hours || 2; }
+    }
+    const phasePct = Math.min(100, phaseHours / phase.targetH * 100);
+
+    phaseEl.innerHTML = `
+      <div class="phase-header" onclick="togglePhase(this)">
+        <span class="phase-badge">PHASE ${phase.id}</span>
+        <div>
+          <div class="phase-title">${phase.name}</div>
+          <div style="font-size:11px;color:var(--muted);font-weight:300;margin-top:2px">${phase.desc}</div>
+        </div>
+        <div class="phase-progress-text">${phaseChecked}/${phase.days}일 · ${phaseHours}H/${phase.targetH}H</div>
+        <div class="phase-mini-bar"><div class="phase-mini-fill" style="width:${phasePct}%"></div></div>
+        <span class="phase-toggle">▾</span>
+      </div>
+      <div class="phase-body" id="phase-body-${phase.id}"></div>
+    `;
+
+    container.appendChild(phaseEl);
+
+    // build day cells in weeks
+    const body = document.getElementById(`phase-body-${phase.id}`);
+    const ti = todayIndex();
+
+    let weekStart = dayOffset;
+    while (weekStart < dayOffset + phase.days) {
+      const weekEnd = Math.min(weekStart + 7, dayOffset + phase.days);
+      const weekNum = Math.floor((weekStart - dayOffset) / 7) + 1;
+
+      const weekGroup = document.createElement('div');
+      weekGroup.className = 'week-group';
+
+      // Month label every ~4 weeks or at start
+      if ((weekNum - 1) % 4 === 0) {
+        const d = dayIndexToDate(weekStart);
+        const lbl = document.createElement('div');
+        lbl.className = 'week-label';
+        lbl.textContent = `${d.getFullYear()}년 ${d.getMonth()+1}월 — WEEK ${weekNum}`;
+        weekGroup.appendChild(lbl);
+      }
+
+      const grid = document.createElement('div');
+      grid.className = 'day-grid';
+
+      for (let di = weekStart; di < weekEnd; di++) {
+        const dayNum = di + 1;
+        const d = dayIndexToDate(di);
+        const checked = !!data[di];
+        const isToday = di === ti;
+        const isFuture = di > ti;
+
+        const cell = document.createElement('div');
+        cell.className = `day-cell${checked?' checked':''}${isToday?' today':''}${isFuture?' future':''}`;
+        cell.dataset.day = di;
+
+        const cumulH = getCumulativeHoursUpTo(di);
+
+        cell.innerHTML = `
+          <div class="check-icon">✓</div>
+          <div class="day-num">${dayNum}</div>
+          <div class="day-date">${formatDate(d)}</div>
+          <div class="day-total">${cumulH}H</div>
+        `;
+
+        if (!isFuture) {
+          cell.addEventListener('click', () => openModal(di));
+        }
+
+        grid.appendChild(cell);
+      }
+
+      weekGroup.appendChild(grid);
+      body.appendChild(weekGroup);
+      weekStart = weekEnd;
+    }
+
+    dayOffset += phase.days;
+  });
+
+  if (container.innerHTML === '') {
+    container.innerHTML = '<div class="empty-msg">필터를 변경하거나 전체를 선택해주세요.</div>';
+  }
+}
+
+function getCumulativeHoursUpTo(dayIndex) {
+  let total = 0;
+  for (let i = 0; i <= dayIndex; i++) {
+    if (data[i]) total += data[i].hours || 2;
+  }
+  return total;
+}
+
+// ─── TOGGLE PHASE ───
+function togglePhase(header) {
+  const phase = header.closest('.phase');
+  phase.classList.toggle('collapsed');
+}
+
+// ─── FILTER ───
+function filterPhase(phase, btn) {
+  document.querySelectorAll('.ctrl-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = phase;
+  buildPhases();
+}
+
+// ─── MODAL ───
+function openModal(dayIndex) {
+  openDay = dayIndex;
+  selectedHours = data[dayIndex] ? (data[dayIndex].hours || 2) : 2;
+
+  const d = dayIndexToDate(dayIndex);
+  document.getElementById('modal-day-num').textContent = `DAY ${dayIndex + 1}`;
+  document.getElementById('modal-date-str').textContent = formatDateFull(d);
+  document.getElementById('modal-note').value = data[dayIndex] ? (data[dayIndex].note || '') : '';
+
+  // hours picker
+  document.querySelectorAll('.hour-btn').forEach(b => {
+    b.classList.remove('selected');
+    if (parseFloat(b.dataset.h || b.textContent) === selectedHours) b.classList.add('selected');
+  });
+
+  // set correct
+  document.querySelectorAll('.hour-btn').forEach(b => {
+    const v = parseFloat(b.textContent);
+    if (v === selectedHours) b.classList.add('selected');
+    else b.classList.remove('selected');
+  });
+
+  document.getElementById('btn-uncheck').style.display = data[dayIndex] ? 'block' : 'none';
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function selectHours(h, btn) {
+  selectedHours = h;
+  document.querySelectorAll('.hour-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function confirmCheck() {
+  if (openDay === null) return;
+  const note = document.getElementById('modal-note').value;
+  data[openDay] = { hours: selectedHours, note, date: dayIndexToDate(openDay).toISOString() };
+  save();
+  closeModal();
+  buildPhases();
+  renderStats();
+  showToast(`✓ DAY ${openDay+1} 완료! +${selectedHours}시간`);
+}
+
+function doUncheck() {
+  if (openDay === null) return;
+  delete data[openDay];
+  save();
+  closeModal();
+  buildPhases();
+  renderStats();
+  showToast(`DAY ${openDay+1} 체크 해제됨`);
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  openDay = null;
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+// ─── TOAST ───
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+// ─── INIT ───
+load();
+renderStats();
+buildPhases();
+
+// Auto-scroll to today
+setTimeout(() => {
+  const todayCell = document.querySelector('.day-cell.today');
+  if (todayCell) {
+    todayCell.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}, 400);
+</script>
 </body>
 </html>
