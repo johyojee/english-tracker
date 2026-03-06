@@ -742,6 +742,51 @@
     font-weight: 300;
   }
 
+  .gallery-note-full {
+    font-size: 12px;
+    color: var(--muted2);
+    margin-top: 6px;
+    line-height: 1.6;
+    font-weight: 300;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .gallery-note-empty {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  .gallery-img-empty {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .gallery-thumb-sm {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border: 1px solid var(--border2);
+    cursor: pointer;
+    margin-right: 4px;
+    margin-top: 4px;
+  }
+
+  .gallery-extra-photos {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2px;
+  }
+
   .gallery-empty {
     text-align: center;
     padding: 80px 20px;
@@ -843,7 +888,7 @@
     <button class="ctrl-btn" onclick="filterPhase(3, this)">비즈니스</button>
     <button class="ctrl-btn" onclick="filterPhase(4, this)">전문가</button>
     <span class="ctrl-label" id="remain-label">남은 시간: 10,000H</span>
-    <button class="gallery-btn" onclick="openGallery()">📷 인증샷 모아보기</button>
+    <button class="gallery-btn" onclick="openGallery()">📖 기록 모아보기</button>
   </div>
 
   <!-- PHASES -->
@@ -894,7 +939,7 @@
 <div class="gallery-overlay" id="gallery-overlay">
   <div class="gallery-inner">
     <div class="gallery-header">
-      <div class="gallery-title">📷 인증샷 갤러리</div>
+      <div class="gallery-title">📖 공부 기록 모아보기</div>
       <button class="gallery-close" onclick="closeGallery()">✕ 닫기</button>
     </div>
     <div class="gallery-grid" id="gallery-grid"></div>
@@ -1277,30 +1322,46 @@ function openGallery() {
   const grid = document.getElementById('gallery-grid');
   grid.innerHTML = '';
 
-  const entries = Object.keys(photos)
+  // 체크된 날 전체 (사진 있든 없든)
+  const entries = Object.keys(data)
     .map(Number)
-    .filter(di => photos[di] && photos[di].length > 0)
     .sort((a, b) => b - a);
 
   if (entries.length === 0) {
-    grid.innerHTML = '<div class="gallery-empty" style="grid-column:1/-1">아직 인증샷이 없어요 📷<br><br>날짜를 클릭해서 사진을 추가해보세요!</div>';
+    grid.innerHTML = '<div class="gallery-empty" style="grid-column:1/-1">아직 기록이 없어요 📝<br><br>날짜를 클릭해서 공부 기록을 남겨보세요!</div>';
   } else {
     entries.forEach(di => {
       const d = dayIndexToDate(di);
       const note = data[di] ? (data[di].note || '') : '';
-      photos[di].forEach((src, imgIdx) => {
-        const item = document.createElement('div');
-        item.className = 'gallery-item';
-        item.innerHTML = `
-          <img class="gallery-img" src="${src}" onclick="openLightboxDirect('${src}', 'DAY ${di+1} · ${formatDateFull(d)}')">
-          <div class="gallery-info">
+      const hours = data[di] ? (data[di].hours || 2) : 2;
+      const dayPhotos = photos[di] || [];
+
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+
+      const photoHTML = dayPhotos.length > 0
+        ? `<img class="gallery-img" src="${dayPhotos[0]}" onclick="openLightboxDirect('${dayPhotos[0]}', 'DAY ${di+1} · ${formatDateFull(d)}')">`
+        : `<div class="gallery-img-empty">📝</div>`;
+
+      const extraPhotos = dayPhotos.length > 1
+        ? `<div class="gallery-extra-photos">${dayPhotos.slice(1).map((src,i) =>
+            `<img class="gallery-thumb-sm" src="${src}" onclick="openLightboxDirect('${src}','DAY ${di+1}')">`
+          ).join('')}</div>` : '';
+
+      item.innerHTML = `
+        ${photoHTML}
+        <div class="gallery-info">
+          <div style="display:flex;align-items:center;justify-content:space-between">
             <div class="gallery-day">DAY ${di+1}</div>
-            <div class="gallery-date">${formatDateFull(d)}</div>
-            ${note ? `<div class="gallery-note-preview">${note}</div>` : ''}
+            <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--teal)">${hours}H</div>
           </div>
-        `;
-        grid.appendChild(item);
-      });
+          <div class="gallery-date">${formatDateFull(d)}</div>
+          ${note ? `<div class="gallery-note-full">${note}</div>` : '<div class="gallery-note-empty">메모 없음</div>'}
+          ${extraPhotos}
+          ${dayPhotos.length > 1 ? `<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:4px">사진 ${dayPhotos.length}장</div>` : ''}
+        </div>
+      `;
+      grid.appendChild(item);
     });
   }
 
